@@ -1,4 +1,7 @@
 def book_solution(n, m, k, l):
+    '''
+    반복되는 수열 파악
+    '''
     ordered_list = sorted(l, reverse=True)
     max_value = ordered_list[0]
     second_max_value = ordered_list[1]
