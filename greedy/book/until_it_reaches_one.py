@@ -8,6 +8,7 @@ def my_solution(n, k):
         result += 1
     return result
 
+
 def book_solution(n, k):
     '''
     n이 k의 배수가 되도록 한 번에 빼는 방식
@@ -30,7 +31,4 @@ def book_solution(n, k):
 n, k = map(int, (input().split()))
 my_result = my_solution(n, k)
 book_result = book_solution(n, k)
-print(my_result, book_result, my_result==book_result)
-
-
-
+print(my_result, book_result, my_result == book_result)

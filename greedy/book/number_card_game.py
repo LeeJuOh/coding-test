@@ -6,8 +6,10 @@ def my_solution(n, m):
         result = max(result, min_value)
     return result
 
+
 def book_solution_1(n, m):
     my_solution(n, m)
+
 
 def book_solution_2(n, m):
     result = 0
