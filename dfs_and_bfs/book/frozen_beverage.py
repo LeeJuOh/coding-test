@@ -1,5 +1,4 @@
 def my_solution():
-    global n, m
     result = 0
     for i in range(n):
         for j in range(m):
@@ -9,8 +8,6 @@ def my_solution():
 
 
 def dfs(x, y):
-    global n, m
-
     if x <= -1 or x >= n or y <= -1 or y >= m:
         return False
 
