@@ -3,7 +3,7 @@ def my_solution(n, m, k):
         if n >= 2 * m:
             n -= 1
         else:
-            m -= 1 
+            m -= 1
         k -= 1
     return min(n // 2, m)
 
