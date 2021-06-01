@@ -3,14 +3,14 @@ def binary_search_by_recursion(array, target, start, end):
     시간 복잡도: O(logN), 배열 내부의 데이터가 정렬되어 있어야 한다.
     탐색 범위가 큰 상황에서의 가정하는 문제에 주로 사용
     탐색 범위가 2,000만을 넘어가면 이진 탐색으로 접근 권장,
-    데이터의 개수나 값이 1,000만 단위 이상으로 넘어가면 
+    데이터의 개수나 값이 1,000만 단위 이상으로 넘어가면
     logN 속도를 내야하는 알고리즘을 떠올리자
     '''
     if start > end:
         return None
 
     mid = (start + end) // 2
-    
+
     if array[mid] == target:
         return mid
     elif array[mid] > target:

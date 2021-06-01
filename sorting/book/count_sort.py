@@ -7,7 +7,7 @@ def count_sort(array):
     N: 데이터의 개수
     K: 데이터 중 최대값
     '''
-    
+
     count = [0] * (max(array) + 1)
     for i in range(len(array)):
         count[array[i]] += 1

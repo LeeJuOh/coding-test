@@ -21,7 +21,8 @@ def book_solution_2(n, m):
         result = max(result, min_value)
     return result
 
+
 n, m = map(int, (input().split()))
 my_result = my_solution(n, m)
 book_result = book_solution_2(n, m)
-print(my_result, book_result, my_result==book_result)
+print(my_result, book_result, my_result == book_result)

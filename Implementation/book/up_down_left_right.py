@@ -42,7 +42,7 @@ def my_solution(n, command_types):
         x, y = nx, ny
 
     return x, y
-        
+
 
 n = int(input())
 command_types = list(input().split())

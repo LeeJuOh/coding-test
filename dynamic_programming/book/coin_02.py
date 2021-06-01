@@ -5,7 +5,7 @@ def my_solution(n, m, array):
         for j in range(array[i], m + 1):
             if d[j - array[i]] != 100001:
                 d[j] = min(d[j], d[j - array[i]] + 1)
-    
+
     if d[m] == 10001:
         print(-1)
     else:

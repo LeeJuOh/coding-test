@@ -6,6 +6,7 @@ def my_solution(x, y):
     distance = graph[1][k] + graph[k][x]
     print(-1) if distance >= INF else print(distance)
 
+
 INF = int(1e9)
 n, m = map(int, input().split())
 graph = [[INF] * (n + 1) for _ in range(n + 1)]

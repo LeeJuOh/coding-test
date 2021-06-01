@@ -13,6 +13,7 @@ def my_solution():
             max_distance = max(max_distance, dist)
     print(count - 1, max_distance)
 
+
 def dijkstra(start):
     q = []
     heapq.heappush(q, (0, start))

@@ -13,6 +13,7 @@ def book_solution(n, m, k, l):
     result += (m - count) * second_max_value
     return result
 
+
 def my_solution(n, m, k, l):
     ordered_list = sorted(l, reverse=True)
     max_value = ordered_list[0]
@@ -31,6 +32,7 @@ def my_solution(n, m, k, l):
             result += second_max_value
             m -= 1
     return result
+
 
 n, m, k = map(int, (input().split()))
 l = list(map(int, input().split()))

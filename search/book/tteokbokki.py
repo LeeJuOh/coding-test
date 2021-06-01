@@ -8,12 +8,12 @@ def my_soultion(m, array):
         for item in array:
             if item > mid:
                 total += item - mid
-        
+
         if total >= m:
             result = mid
             start = mid + 1
         else:
-            end = mid - 1  
+            end = mid - 1
     print(result)
 
 

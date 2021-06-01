@@ -14,10 +14,10 @@ def fibo_by_recursion(x):
     # print(f'f({str(x)})')
     if x == 1 or x == 2:
         return 1
-    
+
     if d[x] != 0:
         return d[x]
-    
+
     d[x] = fibo_by_recursion(x - 1) + fibo_by_recursion(x - 2)
     return d[x]
 
@@ -26,7 +26,6 @@ def fibo_by_loop(x):
     '''
     이처럼 작은 문제부터 답을 도출한다고 하여 bottom-up 방식이라고 말한다. / 상향식
     바텀업 방식에서 사용되는 결과 저장용 리스트를 DP table이라고 부른다
-    
     '''
     d2[1] = 1
     d2[2] = 1
