@@ -1,4 +1,3 @@
-
 def my_solution(str):
     result = 0
     for num in str:
