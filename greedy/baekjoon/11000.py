@@ -5,6 +5,7 @@ import sys
 # 시간 초과 >> n^2 = 4백억
 # 우선순위 큐(힙기반) 복잡도: logN
 # 솔루션 시간 복잡도: NlogN
+# 바로 풀지못함
 def my_solution(N, class_times):
     q = []
     sorted_class_times = sorted(class_times, key=lambda x: x[0])
