@@ -9,9 +9,10 @@ def count_sort(array):
     '''
 
     count = [0] * (max(array) + 1)
-    for i in range(len(array)):jm
+    for i in range(len(array)):
         count[array[i]] += 1
 
+    print(count)
     for i in range(len(count)):
         for j in range(count[i]):
             print(i, end=' ')
@@ -30,7 +31,7 @@ def count_sort_desc(array):
             print(i, end=' ')
 
 
-a = [4, 3, 5, 7, 9]
+a = [3, 4, 3, 5, 7, 9]
 count_sort(a)
 print('\n')
 count_sort_desc(a)
