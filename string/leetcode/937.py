@@ -9,6 +9,7 @@ from typing import List
 
 
 def reorder_log_files(logs: List[str]) -> List[str]:
+    # 람다와 연산자 사용
     letters, digits = [], []
     for log in logs:
         if log.split()[1].isdigit():

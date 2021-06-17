@@ -5,6 +5,7 @@ from typing import List
 
 
 def reverse_string_by_two_point(s: List[str]) -> None:
+    # 전통적인 투포인트 방식
     left, right = 0, len(s) - 1
     while left < right:
         s[left], s[right] = s[right], s[left]
@@ -13,5 +14,6 @@ def reverse_string_by_two_point(s: List[str]) -> None:
 
 
 def reverse_string_by_pythonic_way(s: List[str]) -> None:
+    # 파이썬다운 방식
     # s.reverse()
     s = s[::-1]

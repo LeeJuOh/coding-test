@@ -8,6 +8,7 @@ from typing import Deque
 
 
 def is_palindrome_by_list(s: str) -> bool:
+    # 리스트로 변환해서 푸는 방법
     strs = []
     for char in s:
         if char.isalnum():
@@ -35,6 +36,7 @@ def is_palindrome_by_deque(s: str) -> bool:
 def is_palindrome_by_slicing(s: str) -> bool:
     # 슬라이싱 사용
     # 슬라이싱은 다른 기능, loop, 재귀보다 처리속도가 빠르다.
+    # 정규식 사용
 
     s = s.lower()
     s = re.sub('[^a-z0-9]', '', s)
