@@ -24,5 +24,7 @@ def reorder_log_files(logs: List[str]) -> List[str]:
     return letters + digits
 
 
-logs = ["digit1 8 1 5 1", "let1 art can", "dig2 3 6", "let2 own kit dig", "let3 art zero"]
+logs = [
+    "digit1 8 1 5 1", "let1 art can", "dig2 3 6",
+    "let2 own kit dig", "let3 art zero"]
 print(reorder_log_files(logs))
