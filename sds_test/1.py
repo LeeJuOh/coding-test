@@ -11,6 +11,7 @@ def find_shortest_time(N: int, times: List[int]) -> int:
     else:
 
         priority_q = []
+        times.sort()
         time_map = {i: time for i, time in enumerate(times)}
         while True:
             pairs = list(combinations(time_map.keys(), 2))
