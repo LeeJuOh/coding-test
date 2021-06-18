@@ -1,40 +1,36 @@
 import sys
 import heapq
-from itertools import combinations
-from typing import List
+from collections import deque
 
 
-def find_shortest_time(N: int, times: List[int]) -> int:
+def find_shortest_time(N: int, times: deque) -> int:
     result = 0
     if len(times) == 1:
         result = times[0]
     else:
-
         priority_q = []
-        times.sort()
-        time_map = {i: time for i, time in enumerate(times)}
+        direction = 1
+        first_time = 0
+        second_time = 0
+        min_time = 0
         while True:
-            pairs = list(combinations(time_map.keys(), 2))
-            min_value = sys.maxsize
-            x, y = -1, -1
-            for i, j in pairs:
-                abs_value = abs(time_map[i] - time_map[j])
-                if abs_value < min_value:
-                    min_value = abs_value
-                    x, y = i, j
-
-            result += time_map[x] if time_map[x] >= time_map[y] else time_map[y]
-            heapq.heappush(priority_q, (time_map[x], x))
-            heapq.heappush(priority_q, (time_map[y], y))
-            del time_map[x]
-            del time_map[y]
-
-            if not time_map:
+            times = deque(sorted(times))
+            if direction == 1:
+                first_time = times.popleft()
+                second_time = times.popleft()
+            else:
+                second_time = times.pop()
+                first_time = times.pop()
+            result += second_time
+            if len(times) == 0:
                 break
 
-            return_time, key = heapq.heappop(priority_q)
-            result += return_time
-            time_map[key] = return_time
+            heapq.heappush(priority_q, first_time)
+            heapq.heappush(priority_q, second_time)
+            min_time = heapq.heappop(priority_q)
+            result += min_time
+            times.append(min_time)
+            direction *= -1
     return result
 
 
@@ -48,7 +44,7 @@ def main():
     input_data = []
     for _ in range(T):
         N = int(input().rstrip())
-        times = list(map(int, input().split()))
+        times = deque(map(int, input().split()))
         input_data.append((N, times))
 
     for i, data in enumerate(input_data, start=1):
