@@ -42,16 +42,16 @@ def numeric_display(data: List[str], filter: List[str]) -> int:
 
 
 def make_digit_filter(filter, target_size):
-    q = deque([0] * target_size)
+    result = []
     for i in range(len(filter)):
         ch = filter[i]
         if ch == '+':
-            q[i] = 1
+            result.append(1)
         elif ch == '0':
-            q[i] = 0
+            result.append(0)
         else:
-            q[i] = -1
-    return q
+            result.append(-1)
+    return result
 
 
 def main():

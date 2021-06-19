@@ -1,54 +1,51 @@
 import sys
 import heapq
 from collections import deque
+from typing import List
 
 
-def find_shortest_time(N: int, times: deque) -> int:
+def moving_camels(N: int, camles: List[int]) -> int:
     result = 0
-    if len(times) == 1:
-        result = times[0]
+    if len(camles) == 1:
+        result = camles[0]
     else:
-        priority_q = []
+        opposite_queue = []
         direction = 1
         first_time = 0
         second_time = 0
-        min_time = 0
+        return_time = 0
         while True:
-            times = deque(sorted(times))
+            camles = deque(sorted(camles))
             if direction == 1:
-                first_time = times.popleft()
-                second_time = times.popleft()
+                first_time = camles.popleft()
+                second_time = camles.popleft()
             else:
-                second_time = times.pop()
-                first_time = times.pop()
-            result += second_time
-            if len(times) == 0:
+                second_time = camles.pop()
+                first_time = camles.pop()
+            result += second_timeㅁ
+            if not camles:
                 break
 
-            heapq.heappush(priority_q, first_time)
-            heapq.heappush(priority_q, second_time)
-            min_time = heapq.heappop(priority_q)
-            result += min_time
-            times.append(min_time)
+            heapq.heappush(opposite_queue, first_time)
+            heapq.heappush(opposite_queue, second_time)
+            return_time = heapq.heappop(opposite_queue)
+            result += return_time
+            camles.append(return_time)
             direction *= -1
     return result
 
 
 def main():
-    # 이곳에 소스코드를 작성하세요.
-    # Python3 만 지원됩니다.
-    # pass는 삭제해도 됩니다.
-
     input = sys.stdin.readline
     T = int(input().rstrip())
-    input_data = []
+    total_input = []
     for _ in range(T):
         N = int(input().rstrip())
-        times = deque(map(int, input().split()))
-        input_data.append((N, times))
+        camles = list(map(int, input().split()))
+        total_input.append((N, camles))
 
-    for i, data in enumerate(input_data, start=1):
-        result = find_shortest_time(data[0], data[1])
+    for i, data in enumerate(total_input, start=1):
+        result = moving_camels(data[0], data[1])
         print(f'#{i} {result}')
 
 
