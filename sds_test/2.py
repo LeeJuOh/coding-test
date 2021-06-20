@@ -1,5 +1,6 @@
 import sys
 from typing import List
+import random
 
 
 def numeric_display(data: List[str], filter: List[str]) -> int:
@@ -7,6 +8,9 @@ def numeric_display(data: List[str], filter: List[str]) -> int:
     # 필터의 일부가 자리 벗어나면 불가능
     # 숫자 오버, 언더 플로 불가능(0으로 이동 x)
     result = 0
+    if data[0] == data[1]:
+        return result
+
     before = list(map(int, data[0].zfill(6)))
     after = list(map(int, data[1].zfill(6)))
     size = int(data[2])
@@ -26,7 +30,7 @@ def numeric_display(data: List[str], filter: List[str]) -> int:
                 before[i:i + size] = [x + f * count for x, f in zip(before[i:i + size], filter)]
                 result += count
                 # print(count, before)
-    # print('finishi', before, after)
+    print('finishi', before, after)
     if not before == after or result == 0:
         result = -1
     return result
@@ -57,16 +61,22 @@ def main():
     # pass는 삭제해도 됩니다.
 
     input = sys.stdin.readline
-    T = int(input())
+    # T = int(input())
     input_data = []
     input_filters = []
-    for _ in range(T):
-        input_data.append(list(input().split()))
-        input_filters.append(list(input().rstrip()))
+    # for _ in range(T):
+    #     input_data.append(list(input().split()))
+    #     input_filters.append(list(input().rstrip()))
     # print(input_data, input_filters)
 
+    f = ["+", "-", "0"]
+    for _ in range(5):
+        size = random.randint(1, 6)
+        input_data.append([str(random.randint(0, 10000)), str(random.randint(0, 10000)), str(size)])
+        input_filters.append([random.choice(f) for _ in range(size)])
+
     for i, (data, filter) in enumerate(zip(input_data, input_filters), start=1):
-        # print(data, filter)
+        print(data, filter)
         result = numeric_display(data, filter)
         print(f'#{i} {result}')
         # break

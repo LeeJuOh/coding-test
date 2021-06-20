@@ -1,36 +1,57 @@
+from collections import deque
 import sys
 
 
 def lock(N, K, data):
-    min_count = sys.maxsize
-    lock = [[data[j][i] for j in range(K)] for i in range(N)]
-    # print(lock)
-    for i in range(K):
-        count = 0
-        # print(i, "th")
+    min_value = sys.maxsize
+    for row in data:
+        if 0 not in row:
+            return 0
+
+    start, end = find_candidate_row(K, data)
+    # print('s', start, end)
+    # print(data)
+
+    for i in range(start, end+1):
+        sum_value = 0
         for j in range(N):
-            num = data[i][j]
-            # print('num', num)
-            if num == 1:
+            if data[i][j]:
                 continue
-            for k in range(K // 2):
-                left = i - (k + 1)
-                right = (i + k + 1) % K
-                # print('lock', lock[j])
-                # print('left', i, k, lock[j][left])
-                # print('right', i, k, lock[j][right])
-                if lock[j][left] == 1 or lock[j][right] == 1:
-                    count += 1
+            for click in range(1, (K // 2) + 1):
+                up = i - click
+                if up < 0:
+                    up += K
+                down = i + click
+                if down > K - 1:
+                    down %= K
+                if data[up][j] == 1 or data[down][j] == 1:
+                    sum_value += click
                     break
-        if min_count > count:
-            min_count = count
-    return min_count
+        if sum_value < min_value:
+            min_value = sum_value
+    return min_value
+
+
+def find_candidate_row(K, data):
+    window_size = 2
+    while True:
+        dq = deque()
+        start, end = 0, 0
+        while start != K - 1:
+            dq.append(data[end % K])
+            if end >= window_size:
+                dq.popleft()
+                start += 1
+            if len(dq) == window_size and 0 not in [sum(x) for x in zip(*dq)]:
+                # print('find', dq)
+                # print([sum(x) for x in zip(*dq)])
+                return start, (end % K)
+            end += 1
+            # print(dq)
+        window_size += 1
 
 
 def main():
-    # 이곳에 소스코드를 작성하세요.
-    # Python3 만 지원됩니다.
-    # pass는 삭제해도 됩니다.
     input = sys.stdin.readline
     T = int(input().rstrip())
     total_input_data = []
