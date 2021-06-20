@@ -1,6 +1,5 @@
 import sys
 from typing import List
-from collections import Counter, deque
 
 
 def numeric_display(data: List[str], filter: List[str]) -> int:
@@ -8,50 +7,48 @@ def numeric_display(data: List[str], filter: List[str]) -> int:
     # 필터의 일부가 자리 벗어나면 불가능
     # 숫자 오버, 언더 플로 불가능(0으로 이동 x)
     result = 0
-    before_digit = data[0]
-    after_digit = data[1]
-    filter_size = int(data[2])
+    before = list(map(int, data[0].zfill(6)))
+    after = list(map(int, data[1].zfill(6)))
+    size = int(data[2])
+    # print(before, after, size)
+    filters = get_filter(filter)
+    # print('filter', filters)
 
-    before_digit_size = len(before_digit)
-    after_digit_size = len(after_digit)
-    if before_digit_size > after_digit_size:
-        after_digit = after_digit.zfill(before_digit_size)
-    elif before_digit_size < after_digit_size:
-        before_digit = before_digit.zfill(after_digit_size)
-
-    before_digit = Counter({i: int(digit) for i, digit in enumerate(before_digit)})
-    after_digit = Counter({i: int(digit) for i, digit in enumerate(after_digit)})
-    after_digit.subtract(before_digit)
-
-    target = list(after_digit.values())
-    print('t', target)
-    filter_q = make_digit_filter(filter, len(target))
-    print('f', filter_q)
-    flag = 0
-    # while flag < len(target) - filter_size + 1:
-    #     for i in range(len(target)):
-    #         if filter_q[i] == 0:
-    #         count = target[i] // filter_q[i]
-    #         result += abs(count)
-    #         target = [x - (y * count) for x, y in zip(target, filter_q)]
-    #         filter_q.pop()
-    #         filter_q.appendleft(0)
-    if not all(d == 0 for d in target) or result == 0:
+    for i in range(6 - size + 1):
+        # print('b', before[i:i + size])
+        # print('a', after[i:i + size])
+        count = 0
+        for filter, idx in filters:
+            # print(filter, idx)
+            difference = after[i:i + size][idx] - before[i:i + size][idx]
+            if (difference > 0 and filter[idx]) > 0 or (difference < 0 and filter[idx] < 0):
+                count = (after[i:i + size][idx] - before[i:i + size][idx]) // filter[idx]
+                before[i:i + size] = [x + f * count for x, f in zip(before[i:i + size], filter)]
+                result += count
+                # print(count, before)
+    # print('finishi', before, after)
+    if not before == after or result == 0:
         result = -1
     return result
 
 
-def make_digit_filter(filter, target_size):
-    result = []
-    for i in range(len(filter)):
-        ch = filter[i]
-        if ch == '+':
-            result.append(1)
-        elif ch == '0':
-            result.append(0)
-        else:
-            result.append(-1)
-    return result
+def get_filter(filter):
+    filters = []
+    for f in [filter, reversed(filter)]:
+        temp = []
+        main_filter_idx = None
+        for i, ch in enumerate(f):
+            if ch == '+':
+                temp.append(1)
+            elif ch == '0':
+                temp.append(0)
+            else:
+                temp.append(-1)
+
+            if main_filter_idx is None and ch != '0':
+                main_filter_idx = i
+        filters.append([temp, main_filter_idx])
+    return filters
 
 
 def main():
@@ -66,7 +63,7 @@ def main():
     for _ in range(T):
         input_data.append(list(input().split()))
         input_filters.append(list(input().rstrip()))
-    print(input_data, input_filters)
+    # print(input_data, input_filters)
 
     for i, (data, filter) in enumerate(zip(input_data, input_filters), start=1):
         # print(data, filter)
