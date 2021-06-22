@@ -2,6 +2,7 @@ import sys
 from collections import deque
 
 
+# 문제 풀이 방향은 같았으나 3차원 visited로 시간 & 메모리 최적화하는 부분을 생각못함
 def solution(x, y, horse_count, distance):
     global W, H
 
