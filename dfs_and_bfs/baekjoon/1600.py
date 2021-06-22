@@ -6,8 +6,6 @@ def solution(x, y, horse_count, distance):
     global W, H
 
     def is_valid(x: int, y: int) -> bool:
-        global W, H
-
         if x < 0 or y < 0 or x >= H or y >= W:
             return False
         return True
@@ -16,14 +14,14 @@ def solution(x, y, horse_count, distance):
         for dx, dy in zip(move_dx, move_dy):
             nx = x + dx
             ny = y + dy
+            temp = horse_count
 
             if type == 'horse':
-                horse_count += 1
+                temp += 1
 
-            if is_valid(nx, ny) and board[nx][ny] == 0 and \
-               not visited[nx][ny][horse_count]:
-                queue.append((nx, ny, horse_count, distance + 1))
-                visited[nx][ny][horse_count] = True
+            if is_valid(nx, ny) and board[nx][ny] == 0 and not visited[nx][ny][temp]:
+                queue.append((nx, ny, temp, distance + 1))
+                visited[nx][ny][temp] = True
 
     board = []
     for _ in range(H):
@@ -36,9 +34,9 @@ def solution(x, y, horse_count, distance):
     queue = deque()
     queue.append((x, y, horse_count, distance))
     visited = [[[False] * 31 for _ in range(W)] for _ in range(H)]
-    print(len(visited))
-    print(len(visited[0]))
-    print(len(visited[0][0]))
+    # print(len(visited))
+    # print(len(visited[0]))
+    # print(len(visited[0][0]))
     while queue:
         x, y, horse_count, distance = queue.popleft()
         if x == H - 1 and y == W - 1:
@@ -52,5 +50,6 @@ def solution(x, y, horse_count, distance):
 
 input = sys.stdin.readline
 K = int(input().rstrip())
+# 가로, 세로 크기
 W, H = map(int, input().split())
 print(solution(0, 0, 0, 0))
