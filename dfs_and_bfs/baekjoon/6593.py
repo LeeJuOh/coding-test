@@ -2,11 +2,11 @@ import sys
 from collections import deque
 
 
-def solution(h, x, y):
+def solution(h: int, x: int, y: int) -> int:
     global L, R, C
     # print('s', staart)
 
-    def is_valid_board(h, x, y):
+    def is_valid_board(h: int, x: int, y: int) -> bool:
         if h < 0 or x < 0 or y < 0 or h >= L or x >= R or y >= C:
             return False
         return True
