@@ -2,6 +2,7 @@ import sys
 from typing import List
 
 
+# 총 센서 길이(max - min)에서 두 센서간 길이의 차이가 가장 큰 것들을 k-1개 빼면 된다고 생각
 def solution(N: int, K: int, sensors: List[int]) -> int:
     sensors.sort()
     difference = []

@@ -2,6 +2,8 @@ import sys
 from collections import deque
 
 
+# 전형적인 bfs
+# 말이 되고픈 원숭이때부터 느낀건데 끝나는 타이밍에 대해서 조금 의문
 def solution(h: int, x: int, y: int) -> int:
     global L, R, C
     # print('s', staart)
