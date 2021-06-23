@@ -1,7 +1,7 @@
 from typing import List
 
-
 # n개의 페어를 이용한 min(a,b)의 합으로 만들 수 있는 가장 큰 수
+
 
 def array_pair_sum_by_me(nums: List[int]):
     nums.sort()

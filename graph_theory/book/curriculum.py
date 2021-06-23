@@ -1,5 +1,5 @@
-from collections import deque
 import copy
+from collections import deque
 
 
 def topology_sort():

@@ -1,5 +1,5 @@
-import sys
 import heapq
+import sys
 from collections import deque
 from typing import List
 

@@ -1,6 +1,6 @@
+import random
 import sys
 from typing import List
-import random
 
 
 def numeric_display(data: List[str], filter: List[str]) -> int:

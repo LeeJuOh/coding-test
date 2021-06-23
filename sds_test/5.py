@@ -1,6 +1,6 @@
-from collections import defaultdict
-import sys
 import heapq
+import sys
+from collections import defaultdict
 from typing import Dict, List, Tuple
 
 
