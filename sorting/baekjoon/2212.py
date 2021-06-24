@@ -1,4 +1,5 @@
 import sys
+import heapq
 from typing import List
 
 
@@ -12,6 +13,22 @@ def solution(N: int, K: int, sensors: List[int]) -> int:
 
     total_length = sensors[-1] - sensors[0]
     return total_length - sum(difference[:K-1])
+
+
+# 우선순위 큐
+def solution2(N: int, K: int, sensors: List[int]) -> int:
+    sensors.sort()
+    q = []
+    for i in range(N - 1):
+        diff = sensors[i+1] - sensors[i]
+        heapq.heappush(q, (-diff, diff))
+
+    total_length = sensors[-1] - sensors[0]
+    for i in range(K-1):
+        if not q:
+            break
+        total_length -= heapq.heappop(q)[1]
+    return total_length
 
 
 input = sys.stdin.readline
