@@ -18,7 +18,6 @@ def dfs(node: int, dist: int, max_value: int) -> None:
 
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
-INF = int(1e9)
 NODE_COUNT, start, end = map(int, input().split())
 visited = [False] * (NODE_COUNT + 1)
 graph = [[] for _ in range(NODE_COUNT + 1)]
