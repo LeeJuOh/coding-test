@@ -25,7 +25,7 @@ def solution2(N: int, K: int, sensors: List[int]) -> int:
 
     total_length = sensors[-1] - sensors[0]
     for i in range(K-1):
-        if not q:
+        if not q
             break
         total_length -= heapq.heappop(q)[1]
     return total_length
