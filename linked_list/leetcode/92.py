@@ -18,12 +18,12 @@ def reverse_between(head: ListNode, left: int, right: int) -> ListNode:
     root.next = head
 
     # start, end 지정
-    for _ in range(m - 1):
+    for _ in range(left - 1):
         start = start.next
     end = start.next
 
     # 반복하면서 노드 차례대로 뒤집기
-    for _ in range(left - right):
+    for _ in range(right - left):
         tmp = start.next
         start.next = end.next
         end.next = end.next.next
