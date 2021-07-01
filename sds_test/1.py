@@ -22,7 +22,7 @@ def moving_camels(N: int, camles: List[int]) -> int:
             else:
                 second_time = camles.pop()
                 first_time = camles.pop()
-            result += second_timeㅁ
+            result += second_time
             if not camles:
                 break
 
