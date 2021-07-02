@@ -1,6 +1,6 @@
 import sys
-from typing import List
 from bisect import bisect_left, bisect_right
+from typing import List
 
 
 # TODO 반례찾기
