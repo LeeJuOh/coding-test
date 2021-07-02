@@ -3,6 +3,7 @@ from typing import List
 from bisect import bisect_left, bisect_right
 
 
+# TODO 반례찾기
 def solution(target: int, class_size: int, studnets: List[List[int]]) -> int:
     global CLASS_COUNT
     array = [0] * class_size
@@ -22,6 +23,7 @@ def solution(target: int, class_size: int, studnets: List[List[int]]) -> int:
 
     answer = -target
     sum_value = 0
+    # O(16)
     for i in range(left_idx, right_idx + 1):
         for j in range(left_idx, right_idx + 1):
             for k in range(left_idx, right_idx + 1):
