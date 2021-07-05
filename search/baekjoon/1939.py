@@ -3,7 +3,7 @@ from collections import deque
 from typing import Deque, List, Tuple
 
 
-# 이분탐색;;;
+# 시간 초과 -> 이분탐색 적용
 def solution(start: int, end: int) -> int:
     global N
 
@@ -20,6 +20,7 @@ def solution(start: int, end: int) -> int:
                     visited[node] = True
                     q.append(node)
         return False
+
     min_value, max_value = 1, 1000000000
     result = min_value
     while min_value <= max_value:
