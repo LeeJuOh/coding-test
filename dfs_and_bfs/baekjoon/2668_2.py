@@ -25,3 +25,7 @@ for i in range(1, N + 1):
 print(len(result))
 for x in result:
     print(x)
+4 3
+2 3 1
+3 4 1
+4 2 1
