@@ -15,7 +15,8 @@ def merge_k_lists(self, lists: List[ListNode]) -> ListNode:
     root = result = ListNode(None)
     heap = []
     for i in range(len(lists)):
-        heapq.heappush(heap, (lists[i].val, i, lists[i]))
+        if lists[i] is not None:
+            heapq.heappush(heap, (lists[i].val, i, lists[i]))
 
     while heap:
         node = heapq.heappop(heap)
