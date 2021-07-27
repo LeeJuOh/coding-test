@@ -1,7 +1,7 @@
 import sys
 from typing import List, Set, Tuple
 from bisect import bisect_left
-
+import time
 
 def solution(
     queries: List[Tuple[int, int]],
@@ -45,6 +45,7 @@ def solution(
             print(nums[index])
 
 
+start_time = time.time()
 input = sys.stdin.readline
 N = int(input().rstrip())
 nums = set()
@@ -55,3 +56,5 @@ for i in range(N):
         nums.add(X)
     queries.append((T, X))
 solution(queries, nums)
+end_time = time.time()
+print('time :', end_time-start_time)

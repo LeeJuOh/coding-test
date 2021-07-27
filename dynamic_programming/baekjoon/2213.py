@@ -20,8 +20,10 @@ def solution(graph, weight):
             trace.append(node)
         for i in graph[node]:
             if not visited[i]:
+                # 부모노드를 선택 x, i(자식노들은)
                 if dp[i][1] > dp[i][0] and case == 0:
                     trace_node(i, 1)
+                # 부모노드를 선택, 자식 선택 불가
                 else:
                     trace_node(i, 0)
 

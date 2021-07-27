@@ -10,6 +10,7 @@ def solution(guns: List[int], animals: List[Tuple[int, int]], L: int) -> int:
         if y > L:
             continue
         low, high = 0, len(guns) - 1
+        # |xi-aj| + b = L
         left_target = x + y - L
         right_target = x - y + L
         while low <= high:

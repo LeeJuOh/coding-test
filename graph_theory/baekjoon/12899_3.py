@@ -1,33 +1,42 @@
+from math import log2, ceil
 import sys
-input=sys.stdin.readline
-p=2000000
+import time
 
-def update(b):
-    while b>=1:
-        tree[b]+=1
-        b//=2
+def update_tree(value):
+    idx = value + size - 1
+    while idx > 0:
+        tree[idx] += 1
+        idx //= 2
 
-def rm_update(node,b):
-    while node<s:
-        if tree[node*2]<b:
-            b-=tree[node*2]
-            node=node*2+1
+
+def delete_tree(rank):
+    idx = 1
+    while idx < size:
+        tree[idx] -= 1
+        if tree[idx * 2] >= rank:
+            idx *= 2
         else:
-            node=node*2
-    return node
+            rank -= tree[idx * 2]
+            idx = idx * 2 + 1
+    tree[idx] -= 1
+    return idx - size + 1
 
-s = 1
-while(s < p):
-    s *= 2
-tree = [0] * (s * 2)
-n=int(input())
-for i in range(n):
-    a,b=map(int,input().split())
-    if a==1:
-        update(s+b-1)
-    else:
-        temp=rm_update(1,b)
-        print(temp-s+1)
-        while temp>=1:
-            tree[temp]-=1
-            temp//=2
+
+if __name__ == "__main__":
+    start_time = time.time()
+    p = 2000000
+    h = ceil(log2(p))   # 실제 트리 높이는 h + 1
+    size = 2 ** h   # 1(value)을 넣으면 size - 1 + 1(value)
+    tree = [0] * size * 2
+
+    n = int(sys.stdin.readline())
+
+    for _ in range(n):
+        query, value = map(int, sys.stdin.readline().split())
+
+        if query == 1:
+            update_tree(value)
+        else:
+            print(delete_tree(value))
+    end_time = time.time()
+    print('time', end_time - start_time)

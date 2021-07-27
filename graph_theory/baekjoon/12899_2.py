@@ -1,5 +1,6 @@
 import sys
 from typing import List, Tuple
+import time
 
 
 def solution(
@@ -39,6 +40,7 @@ def solution(
             print(index)
 
 
+start_time = time.time()
 input = sys.stdin.readline
 MAX = 2000000
 N = int(input().rstrip())
@@ -47,3 +49,5 @@ for i in range(N):
     T, X = map(int, input().split())
     queries.append((T, X))
 solution(queries)
+end_time = time.time()
+print('time', end_time - start_time)
